@@ -49,14 +49,7 @@ namespace ControleVenda.Domain.Services
                 categoria.AddNotification(nameof(Categoria.Id), "Id informado é inválido");
 
             if (!categoria.IsValid)
-            {
-                //comum
-                /*string criticas = string.Join(',', categoria.Notifications);
-                throw new Exception(criticas);*/
-
                 return new Result<bool>(categoria.Notifications.ToDictionary(k => k.Key, v => v.Message));
-
-            }
 
             _categoriaRepository.Update(categoria);
             return new Result<bool>(true);
