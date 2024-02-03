@@ -19,6 +19,6 @@ namespace ControleVenda.Infra.Data
             modelBuilder.ApplyConfiguration(new CategoriaConfiguration());
         }
 
-        public DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
     }
 }

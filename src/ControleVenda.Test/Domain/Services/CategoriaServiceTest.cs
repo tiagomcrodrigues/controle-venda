@@ -35,7 +35,7 @@ namespace ControleVenda.Test.Domain.Services
 
         }
 
-        [Fact]
+        [Fact(DisplayName = "Inclusao de Categoria deve falhar")]
         public void AddError()
         {
 
@@ -54,7 +54,7 @@ namespace ControleVenda.Test.Domain.Services
         }
 
         [Fact]
-        public void ListiAllOk()
+        public void ListAllOk()
         {
             IEnumerable<Categoria> categorias = _fixture.Create<IEnumerable<Categoria>>();
             _repositorio

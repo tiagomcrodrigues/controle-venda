@@ -21,16 +21,20 @@ namespace ControleVenda.Infra.Data.Repositories
 
         public int Add(Categoria entidade)
         {
-            _dbVenda.Categorias.Add(entidade.Map());
+            Tables.Categoria tabela = entidade.Map();
+            _dbVenda.Categorias.Add(tabela);
             _dbVenda.SaveChanges();
-            return entidade.Id;
+            return tabela.Id;
         }
 
         public void Delete(int id)
         {
             Tables.Categoria? categoria = _dbVenda.Categorias.Find(id);
             if (categoria != null)
+            {
                 _dbVenda.Categorias.Remove(categoria);
+                _dbVenda.SaveChanges(true);
+            }
         }
 
         public IEnumerable<Categoria> GetAll()
