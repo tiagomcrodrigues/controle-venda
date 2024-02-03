@@ -7,7 +7,7 @@ namespace ControleVenda.Domain.Ports
         int Add(Categoria categoria);
         void Delete(int id);
         IEnumerable<Categoria> GetAll();
-        Categoria GetById(int id);
+        Categoria? GetById(int id);
         void Update(Categoria categoria);
     }
 }

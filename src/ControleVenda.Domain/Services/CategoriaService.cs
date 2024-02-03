@@ -36,7 +36,7 @@ namespace ControleVenda.Domain.Services
             => _categoriaRepository.GetAll();
 
 
-        public Categoria GetById(int id)
+        public Categoria? GetById(int id)
             => _categoriaRepository.GetById(id);
 
 
