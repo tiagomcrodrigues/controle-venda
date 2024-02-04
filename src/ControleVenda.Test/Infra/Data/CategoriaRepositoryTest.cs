@@ -1,14 +1,7 @@
 ﻿using AutoFixture;
 using ControleVenda.Domain.Ports;
-using ControleVenda.Domain.Services;
 using ControleVenda.Infra.Data;
 using ControleVenda.Infra.Data.Repositories;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using tb = ControleVenda.Infra.Data.Tables;
 using dm = ControleVenda.Domain.Entities;
 using ControleVenda.Test.Mocks;

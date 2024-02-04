@@ -28,10 +28,10 @@ namespace ControleVenda.Test.Domain.Services
                 .Returns(ID_CATETORIA);
 
             var categoria = _fixture.Create<Categoria>();
-            var resut = _categoriaService.Add(categoria);
+            var result = _categoriaService.Add(categoria);
 
-            Assert.True(resut.Success);
-            Assert.Equal(ID_CATETORIA, resut.Data);
+            Assert.True(result.Success);
+            Assert.Equal(ID_CATETORIA, result.Data);
 
         }
 

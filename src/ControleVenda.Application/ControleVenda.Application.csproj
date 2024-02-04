@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\" />
+    <ProjectReference Include="..\ControleVenda.CrossCutting.Common\ControleVenda.CrossCutting.Common.csproj" />
+    <ProjectReference Include="..\ControleVenda.Domain\ControleVenda.Domain.csproj" />
   </ItemGroup>
 
 </Project>

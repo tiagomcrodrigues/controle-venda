@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ControleVenda.Application\ControleVenda.Application.csproj" />
     <ProjectReference Include="..\ControleVenda.Domain\ControleVenda.Domain.csproj" />
     <ProjectReference Include="..\ControleVenda.Infra.Data\ControleVenda.Infra.Data.csproj" />
   </ItemGroup>

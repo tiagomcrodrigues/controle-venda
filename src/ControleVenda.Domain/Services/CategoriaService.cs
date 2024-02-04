@@ -4,7 +4,7 @@ using ControleVenda.Domain.Ports;
 
 namespace ControleVenda.Domain.Services
 {
-    public class CategoriaService
+    public class CategoriaService : ICategoriaService
     {
 
         private readonly ICategoriaRepository _categoriaRepository;
