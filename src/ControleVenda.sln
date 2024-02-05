@@ -13,14 +13,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleVenda.Test", "Contr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleVenda.CrossCutting.Common", "ControleVenda.CrossCutting.Common\ControleVenda.CrossCutting.Common.csproj", "{144FC6B5-0C65-4A56-9868-8858534D5BA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleVenda.Infra.Data", "ControleVenda.Infra.Data\ControleVenda.Infra.Data.csproj", "{AB37B510-D88E-41F8-8020-5EDD1A697047}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleVenda.Infra.Data", "ControleVenda.Infra.Data\ControleVenda.Infra.Data.csproj", "{AB37B510-D88E-41F8-8020-5EDD1A697047}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDE9C9DD-7F48-44FE-A74E-187917CA0926}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleVenda.Application", "ControleVenda.Application\ControleVenda.Application.csproj", "{60D0ED38-20AB-47F2-BAEA-BAE0C668B36F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleVenda.Application", "ControleVenda.Application\ControleVenda.Application.csproj", "{60D0ED38-20AB-47F2-BAEA-BAE0C668B36F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleVenda.Api", "ControleVenda.Api\ControleVenda.Api.csproj", "{540B71E0-48C9-48B3-BA3A-7F93F7A2F9CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleVenda.CrossCutting.IoC", "ControleVenda.CrossCutting.IoC\ControleVenda.CrossCutting.IoC.csproj", "{9A9FA6BD-44C6-44DF-A216-681C3C9DC753}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +52,14 @@ Global
 		{60D0ED38-20AB-47F2-BAEA-BAE0C668B36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60D0ED38-20AB-47F2-BAEA-BAE0C668B36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60D0ED38-20AB-47F2-BAEA-BAE0C668B36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540B71E0-48C9-48B3-BA3A-7F93F7A2F9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540B71E0-48C9-48B3-BA3A-7F93F7A2F9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540B71E0-48C9-48B3-BA3A-7F93F7A2F9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540B71E0-48C9-48B3-BA3A-7F93F7A2F9CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A9FA6BD-44C6-44DF-A216-681C3C9DC753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A9FA6BD-44C6-44DF-A216-681C3C9DC753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A9FA6BD-44C6-44DF-A216-681C3C9DC753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A9FA6BD-44C6-44DF-A216-681C3C9DC753}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +70,8 @@ Global
 		{144FC6B5-0C65-4A56-9868-8858534D5BA0} = {022F1F1D-0711-4D45-AC5D-B8E7D202C432}
 		{AB37B510-D88E-41F8-8020-5EDD1A697047} = {022F1F1D-0711-4D45-AC5D-B8E7D202C432}
 		{60D0ED38-20AB-47F2-BAEA-BAE0C668B36F} = {022F1F1D-0711-4D45-AC5D-B8E7D202C432}
+		{540B71E0-48C9-48B3-BA3A-7F93F7A2F9CF} = {022F1F1D-0711-4D45-AC5D-B8E7D202C432}
+		{9A9FA6BD-44C6-44DF-A216-681C3C9DC753} = {022F1F1D-0711-4D45-AC5D-B8E7D202C432}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCDA9D76-E5FC-4129-BC43-62EDF597B802}
