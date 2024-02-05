@@ -1,4 +1,6 @@
-﻿namespace ControleVenda.CrossCutting.Common.Models
+﻿using Flunt.Notifications;
+
+namespace ControleVenda.CrossCutting.Common.Models
 {
     public class Result<T> : IResult<T>
     {
@@ -7,7 +9,7 @@
             Data = data;
         }
 
-        public Result(IDictionary<string, string> errors)
+        public Result(IEnumerable<Notification> errors)
         {
             Errors = errors;
         }
@@ -21,7 +23,7 @@
 
         public T Data { get; private set; }
 
-        public IDictionary<string, string> Errors { get; private set; } = new Dictionary<string, string>();
+        public IEnumerable<Notification> Errors { get; private set; } = new List<Notification>();
 
         public Exception? Exception { get; private set; }
 

@@ -30,7 +30,7 @@ namespace ControleVenda.Api.Controllers
             return UnprocessableEntity(result.Errors.CapturaCriticas()); 
         }
 
-
+        
 
 
     }

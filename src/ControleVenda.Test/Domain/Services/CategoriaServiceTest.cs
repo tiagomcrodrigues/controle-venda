@@ -49,7 +49,7 @@ namespace ControleVenda.Test.Domain.Services
             var resut = _categoriaService.Add(categoria);
 
             Assert.False(resut.Success);
-            Assert.Equal(1, resut.Errors.Count);
+            Assert.Equal(1, resut.Errors.Count());
 
         }
 
