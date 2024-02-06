@@ -1,10 +1,5 @@
 ﻿using ControleVenda.Application.Ports.Categorias;
 using ControleVenda.Domain.Ports;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleVenda.Application.UseCases.Categorias
 {
@@ -14,11 +9,8 @@ namespace ControleVenda.Application.UseCases.Categorias
         public CategoriaDeleteUseCase(ICategoriaService categoriaService) : base(categoriaService) { }
 
 
-        public bool Execute(int id)
-        {
-            _service.Delete(id);
-            return true;
-        }
+        public void Execute(int id)
+            => _service.Delete(id);
 
     }
 }

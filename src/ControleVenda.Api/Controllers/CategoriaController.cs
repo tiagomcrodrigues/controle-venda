@@ -2,10 +2,7 @@
 using ControleVenda.Api.Models.Requests;
 using ControleVenda.Api.Models.Responses;
 using ControleVenda.Application.Ports.Categorias;
-using ControleVenda.CrossCutting.Common.Models;
 using ControleVenda.Domain.Entities;
-using Flunt.Notifications;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleVenda.Api.Controllers
@@ -19,13 +16,22 @@ namespace ControleVenda.Api.Controllers
         private readonly ICategoriaGetAllUseCase _categoriaGetAllUseCase;
         private readonly ICategoriaGetByIdUseCase _categoriaGetByIdUseCase;
         private readonly ICategoriaUpdateUseCase _categoriaUpdateUseCase;
+        private readonly ICategoriaDeleteUseCase _categoriaDeleteUseCase;
 
-        public CategoriaController(ICategoriaAddUseCase categoriaAddUseCase, ICategoriaGetAllUseCase categoriaGetAllUseCase, ICategoriaGetByIdUseCase categoriaGetByIdUseCase, ICategoriaUpdateUseCase categoriaUpdateUseCase)
+        public CategoriaController
+        (
+            ICategoriaAddUseCase categoriaAddUseCase, 
+            ICategoriaGetAllUseCase categoriaGetAllUseCase, 
+            ICategoriaGetByIdUseCase categoriaGetByIdUseCase, 
+            ICategoriaUpdateUseCase categoriaUpdateUseCase, 
+            ICategoriaDeleteUseCase categoriaDeleteUseCase
+        )
         {
             _categoriaAddUseCase = categoriaAddUseCase;
             _categoriaGetAllUseCase = categoriaGetAllUseCase;
             _categoriaGetByIdUseCase = categoriaGetByIdUseCase;
             _categoriaUpdateUseCase = categoriaUpdateUseCase;
+            _categoriaDeleteUseCase = categoriaDeleteUseCase;
         }
 
         [HttpPost]
@@ -66,8 +72,12 @@ namespace ControleVenda.Api.Controllers
 
         }
 
-
-
+        [HttpDelete("{id:int}")]
+        public IActionResult Excluir([FromRoute] int id)
+        {
+            _categoriaDeleteUseCase.Execute(id);
+            return NoContent();
+        }
 
     }
 }

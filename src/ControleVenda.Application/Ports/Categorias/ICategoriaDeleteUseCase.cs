@@ -2,6 +2,6 @@
 {
     public interface ICategoriaDeleteUseCase
     {
-        bool Execute(int id);
+        void Execute(int id);
     }
 }
