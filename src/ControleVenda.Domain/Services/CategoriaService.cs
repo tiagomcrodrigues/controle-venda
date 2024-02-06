@@ -36,7 +36,7 @@ namespace ControleVenda.Domain.Services
             catch (Exception ex)
             {
                 if (ex.GetBaseException().Message.Contains($"UK_{nameof(Categoria)}"))
-                    return new Result<int>(new List<Notification>() { new(nameof(Categoria), "Categoria já cadastrada") });
+                    return new Result<int>(new Notification(nameof(Categoria), "Categoria já cadastrada"));
                 throw; 
             }
 
@@ -61,8 +61,17 @@ namespace ControleVenda.Domain.Services
             if (!categoria.IsValid)
                 return new Result<bool>(categoria.Notifications);
 
-            _categoriaRepository.Update(categoria);
-            return new Result<bool>(true);
+            try
+            {
+                _categoriaRepository.Update(categoria);
+                return new Result<bool>(true);
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetBaseException().Message.Contains($"UK_{nameof(Categoria)}"))
+                    return new Result<bool>(new Notification(nameof(Categoria), "Já existe uma categoria cadastrada com esse nome"));
+                throw;
+            }
         }
 
 

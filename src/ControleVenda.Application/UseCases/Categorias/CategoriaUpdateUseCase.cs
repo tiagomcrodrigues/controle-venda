@@ -3,6 +3,7 @@ using ControleVenda.Application.Extensions;
 using ControleVenda.Application.Ports.Categorias;
 using ControleVenda.CrossCutting.Common.Models;
 using ControleVenda.Domain.Ports;
+using Flunt.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace ControleVenda.Application.UseCases.Categorias
         }
 
         public IResult<bool> Execute(CategoriaDto dto)
-            => _service.Update(dto.Map());
+            =>_service.Update(dto.Map());
+
 
 
     }

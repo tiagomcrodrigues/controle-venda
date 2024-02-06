@@ -7,21 +7,21 @@ namespace ControleVenda.Api.Extensions
 {
     public static class CategoriaExtension
     {
-        public static CategoriaDto Map(this CategoriaRequest request)
+        public static CategoriaDto Map(this CategoriaRequest request,int? id=null)
             => new()
             {
+                Id = id,
                 Nome = request.Nome
             };
 
-        //public static CategoriaDto? Map(this CategoriaResponse? entidade)
-        //{
-        //    if (entidade == null)
-        //        return null;
-        //    return new(entidade.Id)
-        //    {
-        //        Nome = entidade.Nome
-        //    };
-        //}
+        public static CategoriaResponse Map(this CategoriaDto dto)
+        {
+            return new()
+            {
+                Id = dto.Id.Value,
+                Nome = dto.Nome
+            };
+        }
 
 
 
