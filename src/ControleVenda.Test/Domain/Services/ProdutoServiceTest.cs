@@ -26,6 +26,7 @@ namespace ControleVenda.Test.Domain.Services
                 .Returns(ID_Produto);
 
             var produto = _fixture.Create<Produto>();
+            produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
             var result = _produtoService.Add(produto);
 
             Assert.True(result.Success);
@@ -35,15 +36,101 @@ namespace ControleVenda.Test.Domain.Services
         [Fact]
         public void AddError()
         {
-            _repositorio
-                .Setup(p => p.Add(It.IsAny<Produto>()))
-                .Returns(ID_Produto);
-
             var produto = new Produto();
             var result = _produtoService.Add(produto);
 
             Assert.False(result.Success);
-            Assert.Equal(1, result.Errors.Count());
+            Assert.Equal(4, result.Errors.Count());
+        }
+
+
+
+        [Fact]
+        public void AddErrorDuplicate()
+        {
+            _repositorio
+                .Setup(p => p.Add(It.IsAny<Produto>()))
+                .Throws(new Exception($"UK_{nameof(Produto)}"));
+
+            var produto = _fixture.Create<Produto>();
+            produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
+            var result = _produtoService.Add(produto);
+
+            Assert.False(result.Success);
+            Assert.Single(result.Errors);
+        }
+
+        [Fact]
+        public void AddErrorThor()
+        {
+            _repositorio
+                .Setup(p => p.Add(It.IsAny<Produto>()))
+                .Throws(new Exception());
+
+            var produto = _fixture.Create<Produto>();
+            produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
+
+            Assert.Throws<Exception>(() => _produtoService.Add(produto));
+        }
+
+        [Fact]
+        public void UpdateSucess()
+        {
+            _repositorio
+                .Setup(p => p.Update(It.IsAny<Produto>()));
+
+            var produto = _fixture.Create<Produto>();
+            produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
+            var result = _produtoService.Update(produto);
+
+            Assert.True(result.Success);
+        }
+
+        [Fact]
+        public void UpdateErrorThrow()
+        {
+            _repositorio
+                .Setup(p => p.Update(It.IsAny<Produto>()))
+                .Throws(new Exception());
+
+            var produto = _fixture.Create<Produto>();
+            produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
+
+            Assert.Throws<Exception>(() => _produtoService.Update(produto));
+        }
+
+        [Fact]
+        public void UpdateError()
+        {
+            _repositorio
+                .Setup(p => p.Update(It.IsAny<Produto>()))
+                .Throws(new Exception($"UK_{nameof(Produto)}"));
+
+            var produto = _fixture.Create<Produto>();
+            produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
+            var result = _produtoService.Update(produto);
+
+            Assert.False(result.Success);
+            Assert.Single(result.Errors);
+        }
+
+        [Fact]
+        public void GetAll()
+        {
+            IEnumerable<Produto> produtos = _fixture.Create<IEnumerable<Produto>>();
+            _repositorio
+               .Setup(p => p.GetAll())
+               .Returns(produtos);
+            var result = _produtoService.GetAll();
+
+            Assert.True(result.Any());
+        }
+
+        [Fact]
+        public void GetById()
+        {
+        
+
         }
 
     }

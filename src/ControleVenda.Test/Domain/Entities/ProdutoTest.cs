@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using dt=ControleVenda.Domain.Entities;
+using dm=ControleVenda.Domain.Entities;
 using ControleVenda.Infra.Data.Tables;
 
 namespace ControleVenda.Test.Domain.Entities
@@ -11,36 +11,36 @@ namespace ControleVenda.Test.Domain.Entities
         [Fact]
         public void ValidacaoNomeInvalidoProduto()
         {
-            var produto = _fixture.Create<dt.Produto>();
+            var produto = _fixture.Create<dm.Produto>();
             produto.Nome = null;
             produto.Validate();
             Assert.False(produto.IsValid);
-            Assert.True(produto.Notifications.Count() == 1);
+            Assert.True(produto.Notifications.Count() == 2);
         }
 
         [Fact]
         public void ValidacaoNomePequenoProduto()
         {
-            var produto = _fixture.Create<dt.Produto>();
+            var produto = _fixture.Create<dm.Produto>();
             produto.Nome = "q";
             produto.Validate();
             Assert.False(produto.IsValid);
-            Assert.True(produto.Notifications.Count() == 1);
+            Assert.True(produto.Notifications.Count() == 2);
         }
         [Fact]
         public void ValidacaoNomeGrandeProduto()
         {
-            var porduto = _fixture.Create<dt.Produto>();
+            var porduto = _fixture.Create<dm.Produto>();
             porduto.Nome = new string('w', 110);
             porduto.Validate();
             Assert.False(porduto.IsValid);
-            Assert.True(porduto.Notifications.Count() == 1); 
+            Assert.True(porduto.Notifications.Count() == 2); 
         }
 
         [Fact]
         public void ErroProdutoCategoria() 
         {
-            var produto = _fixture.Create<dt.Produto>();
+            var produto = _fixture.Create<dm.Produto>();
             produto.Categoria = null;
             produto.Validate();
             Assert.False(produto.IsValid);
@@ -51,25 +51,25 @@ namespace ControleVenda.Test.Domain.Entities
         [Fact]
         public void ErroProdutoValorUnitario()
         {
-            var produto = _fixture.Create<dt.Produto>();
+            var produto = _fixture.Create<dm.Produto>();
 
             produto.ValorUnitario = 0;
 
             produto.Validate();
             Assert.False(produto.IsValid);
-            Assert.True(produto.Notifications.Count() == 1);
+            Assert.True(produto.Notifications.Count() == 2);
         }
 
         [Fact]
         public void ErroProdutoQuantidade()
         {
-            var produto = _fixture.Create<dt.Produto>();
+            var produto = _fixture.Create<dm.Produto>();
 
-            produto.Quntidade = (0);
+            produto.Quantidade = (0);
 
             produto.Validate();
             Assert.False(produto.IsValid);
-            Assert.True(produto.Notifications.Count() == 1);
+            Assert.True(produto.Notifications.Count() == 2);
         }
 
     }

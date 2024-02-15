@@ -17,7 +17,7 @@ namespace ControleVenda.Infra.Data.Extensions
                 Id = entidade.Id,
                 Nome = entidade.Nome,
                 ValorUnitario = entidade.ValorUnitario,
-                Quntidade = entidade.Quntidade,
+                Quntidade = entidade.Quantidade,
                 CategoriaId = entidade.Categoria.Id,
                 Categoria = entidade.Categoria.Map()
             };

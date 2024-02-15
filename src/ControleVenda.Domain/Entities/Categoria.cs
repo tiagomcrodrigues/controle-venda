@@ -2,7 +2,7 @@
 
 namespace ControleVenda.Domain.Entities
 {
-    public class Categoria : Notifiable<Notification>
+    public class Categoria : Notifiable<Notification>, IKeyIdentitication
     {
         public Categoria()
         {

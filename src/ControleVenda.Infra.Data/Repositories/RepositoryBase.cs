@@ -1,0 +1,71 @@
+﻿using ControleVenda.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace ControleVenda.Infra.Data.Repositories
+{
+    public abstract class RepositoryBase<TEntity,TTable>
+        where TEntity : class, IKeyIdentitication
+        where TTable : class, IKeyIdentitication
+    {
+
+        private readonly DbVenda _dbVenda;
+        private readonly DbSet<TTable> _dbSet;
+
+        protected abstract TEntity Map(TTable tabela);
+
+        protected abstract TTable Map(TEntity entidade);
+
+        protected abstract TTable Map(TEntity entidade, TTable tabela);
+
+        public RepositoryBase(DbVenda dbVenda)
+        {
+            _dbVenda = dbVenda;
+            _dbSet = _dbVenda.Set<TTable>();
+        }
+
+        public int Add(TEntity entidade)
+        {
+
+            
+            TTable tabela = Map(entidade);
+            _dbSet.Add(tabela);
+            _dbVenda.SaveChanges();
+            return tabela.Id;
+        }
+
+        public void Delete(int id)
+        {
+            TTable? tabela = _dbSet.Find(id);
+            if (tabela != null)
+            {
+                _dbSet.Remove(tabela);
+                _dbVenda.SaveChanges(true);
+            }
+        }
+
+        public IEnumerable<TEntity> GetAll()
+            => _dbSet
+            .ToList()
+            .Select(c => Map(c));
+
+
+        public TEntity? GetById(int id)
+        {
+            TTable? tabela = _dbSet.Find(id);
+            if (tabela == null)
+                return null;
+            return Map(tabela);
+        }
+
+        public void Update(TEntity entidade)
+        {
+            TTable? tabela = _dbSet.Find(entidade.Id);
+            if (tabela != null)
+            {
+                Map(entidade, tabela);
+                _dbVenda.SaveChanges();
+            }
+        }
+
+    }
+}

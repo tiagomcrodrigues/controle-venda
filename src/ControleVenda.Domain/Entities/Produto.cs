@@ -16,7 +16,7 @@ namespace ControleVenda.Domain.Entities
         public int Id { get; private set; }
         public string? Nome { get; set; }
         public double ValorUnitario { get; set; }
-        public int Quntidade { get; set; }
+        public int Quantidade { get; set; }
         
         public Categoria? Categoria { get; set; }
 
@@ -28,21 +28,14 @@ namespace ControleVenda.Domain.Entities
             if (Nome?.Length > 100 || Nome?.Length<2)
                 AddNotification(nameof(Nome), "O nome deve conter entre 2 e 100 caracteres");
 
-            if (Categoria == null)
-            {
-                AddNotification(nameof(Categoria), "A categoria deve ser informada");
-            }
-            else
-            {
-                Categoria.Validate();
-                AddNotifications(Categoria.Notifications);
-            }
+            if (Categoria == null || Categoria.Id <= 0)
+                AddNotification(nameof(Categoria), "Categoria inválida ou não informada");
             
             if (ValorUnitario <= 0)
                 AddNotification(nameof(ValorUnitario), "o valor unitario é obrigatorio");
 
-            if (Quntidade <= 0 )
-                AddNotification(nameof(Quntidade), "A quntidade é obrigatorio");
+            if (Quantidade <= 0 )
+                AddNotification(nameof(Quantidade), "A quntidade é obrigatorio");
         }
 
 

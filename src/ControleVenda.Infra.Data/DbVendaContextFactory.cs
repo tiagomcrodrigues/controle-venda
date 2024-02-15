@@ -18,19 +18,19 @@ namespace ControleVenda.Infra.Data
         public DbVenda CreateDbContext(string[] args)
         {
             //local
-            string connectionString =
-                "Server=127.0.0.1;Port=3306;" +
-                "Database=dbvenda;" +
-                "Uid=root;" +
-                "password=1234;";
+            //string connectionString =
+            //    "Server=127.0.0.1;Port=3306;" +
+            //    "Database=dbvenda;" +
+            //    "Uid=root;" +
+            //    "password=1234;";
 
 
             //servidor
-            //string connectionString =
-            //    "Server=192.168.3.1;Port=3306;" +
-            //    "Database=dbvenda;" +
-            //    "Uid=root;" +
-            //    "password=RR.MySqlDev;";
+            string connectionString =
+                "Server=192.168.3.1;Port=3306;" +
+                "Database=dbvenda;" +
+                "Uid=root;" +
+                "password=RR.MySqlDev;";
 
             DbContextOptions < DbVenda> options =
                 new DbContextOptionsBuilder<DbVenda>()
