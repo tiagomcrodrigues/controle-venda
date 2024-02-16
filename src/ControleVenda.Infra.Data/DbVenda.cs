@@ -17,8 +17,10 @@ namespace ControleVenda.Infra.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CategoriaConfiguration());
+            modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
         }
 
         public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Produto> Produtos { get; set; }
     }
 }
