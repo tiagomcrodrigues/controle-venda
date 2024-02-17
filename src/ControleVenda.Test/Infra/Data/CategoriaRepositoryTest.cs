@@ -92,7 +92,7 @@ namespace ControleVenda.Test.Infra.Data
         [Fact(DisplayName = "Deve excluir categoria")]
         public void Delete()
         {
-            var categoriaTest = new dm.Categoria() { Nome = "ttadsttt" };
+            var categoriaTest = new dm.Categoria() { Nome = "CATEGORIA CONDENADA" };
             int id = _repository.Add(categoriaTest);
             _repository.Delete(id);
 

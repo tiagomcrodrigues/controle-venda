@@ -2,7 +2,7 @@
 
 namespace ControleVenda.Domain.Entities
 {
-    public class Produto : Notifiable<Notification>
+    public class Produto : Notifiable<Notification>, IKeyIdentitication
     {
         public Produto()
         {

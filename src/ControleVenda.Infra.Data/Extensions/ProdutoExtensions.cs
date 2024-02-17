@@ -1,10 +1,5 @@
 ﻿using tb = ControleVenda.Infra.Data.Tables;
 using dm = ControleVenda.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleVenda.Infra.Data.Extensions
 {
@@ -18,9 +13,29 @@ namespace ControleVenda.Infra.Data.Extensions
                 Nome = entidade.Nome,
                 ValorUnitario = entidade.ValorUnitario,
                 Quntidade = entidade.Quantidade,
-                CategoriaId = entidade.Categoria.Id,
-                Categoria = entidade.Categoria.Map()
+                CategoriaId = entidade.Categoria.Id
             };
         }
+
+        public static dm.Produto Map(this tb.Produto tabela)
+            => new(tabela.Id)
+            {
+                Nome = tabela.Nome,
+                ValorUnitario = tabela.ValorUnitario,
+                Quantidade = tabela.Quntidade,
+                Categoria = tabela.Categoria.Map()
+            };
+
+
+        public static tb.Produto Map(this tb.Produto tabela, dm.Produto entidade)
+        {
+            tabela.Nome = entidade.Nome;
+            tabela.ValorUnitario = entidade.ValorUnitario;
+            tabela.Quntidade = entidade.Quantidade;
+            tabela.CategoriaId = entidade.Categoria.Id;
+            return tabela;
+        }
+
+
     }
 }

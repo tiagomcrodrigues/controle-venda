@@ -23,7 +23,7 @@ namespace ControleVenda.Infra.Data.Repositories
             _dbSet = _dbVenda.Set<TTable>();
         }
 
-        public int Add(TEntity entidade)
+        public virtual int Add(TEntity entidade)
         {
 
             
@@ -33,7 +33,7 @@ namespace ControleVenda.Infra.Data.Repositories
             return tabela.Id;
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             TTable? tabela = _dbSet.Find(id);
             if (tabela != null)
@@ -43,13 +43,13 @@ namespace ControleVenda.Infra.Data.Repositories
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
             => _dbSet
             .ToList()
             .Select(c => Map(c));
 
 
-        public TEntity? GetById(int id)
+        public virtual TEntity? GetById(int id)
         {
             TTable? tabela = _dbSet.Find(id);
             if (tabela == null)
@@ -57,7 +57,7 @@ namespace ControleVenda.Infra.Data.Repositories
             return Map(tabela);
         }
 
-        public void Update(TEntity entidade)
+        public virtual void Update(TEntity entidade)
         {
             TTable? tabela = _dbSet.Find(entidade.Id);
             if (tabela != null)
