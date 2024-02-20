@@ -49,7 +49,7 @@ namespace ControleVenda.Test.Infra.Data
             tb.Produto produto = new() 
             { 
                 Nome = _nomeProduto_1,
-                Quntidade = _quantidade_1 ,
+                Quantidade = _quantidade_1 ,
                 ValorUnitario = _valorUnitario_1,
                 CategoriaId = _idCategoria_1
             };
@@ -58,7 +58,7 @@ namespace ControleVenda.Test.Infra.Data
             tb.Produto produto2 = new()
             {
                 Nome = _nomeProduto_2,
-                Quntidade = _quantidade_1,
+                Quantidade = _quantidade_1,
                 ValorUnitario = _valorUnitario_2,
                 CategoriaId = _idCategoria_2
             };

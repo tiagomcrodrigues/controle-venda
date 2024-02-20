@@ -11,26 +11,31 @@ namespace ControleVenda.Test.Domain.Services
         private Mock<IProdutoRepository> _repositorio = new();
         private ProdutoService _produtoService;
         private Fixture _fixture = new Fixture();
-        private const int ID_Produto = 1;
+        private const int ID_PRODUTO = 1;
 
         public ProdutoServiceTest()
         {
             _produtoService = new(_repositorio.Object);
         }
 
+        private Produto ProdutoCreate(int id)
+            => _fixture.Build<Produto>()
+                .FromFactory<int>((x) => new Produto(id))
+                .Create();
+
         [Fact]
         public void AddSucess()
         {
             _repositorio
                 .Setup(p => p.Add(It.IsAny<Produto>()))
-                .Returns(ID_Produto);
+                .Returns(ID_PRODUTO);
 
             var produto = _fixture.Create<Produto>();
             produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
             var result = _produtoService.Add(produto);
 
             Assert.True(result.Success);
-            Assert.Equal(ID_Produto, result.Data);
+            Assert.Equal(ID_PRODUTO, result.Data);
         }
 
         [Fact]
@@ -79,7 +84,8 @@ namespace ControleVenda.Test.Domain.Services
             _repositorio
                 .Setup(p => p.Update(It.IsAny<Produto>()));
 
-            var produto = _fixture.Create<Produto>();
+            var produto = ProdutoCreate(ID_PRODUTO);
+
             produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
             var result = _produtoService.Update(produto);
 
@@ -93,7 +99,8 @@ namespace ControleVenda.Test.Domain.Services
                 .Setup(p => p.Update(It.IsAny<Produto>()))
                 .Throws(new Exception());
 
-            var produto = _fixture.Create<Produto>();
+            var produto = ProdutoCreate(ID_PRODUTO);
+
             produto.Categoria = new Categoria(1) { Nome = "CATEGORIA TEST" };
 
             Assert.Throws<Exception>(() => _produtoService.Update(produto));
@@ -127,9 +134,16 @@ namespace ControleVenda.Test.Domain.Services
         }
 
         [Fact]
-        public void GetById()
+        public void GetIdOk()
         {
-        
+            Produto produto = ProdutoCreate(ID_PRODUTO);
+            _repositorio
+                .Setup(p => p.GetById(It.IsAny<int>()))
+                .Returns(produto);
+
+            var result = _produtoService.GetById(ID_PRODUTO);
+
+            Assert.NotNull(result);
 
         }
 

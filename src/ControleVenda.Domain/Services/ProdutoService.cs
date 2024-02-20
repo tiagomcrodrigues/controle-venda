@@ -14,6 +14,16 @@ namespace ControleVenda.Domain.Services
             _produtoRepository = produtoRepository;
         }
 
+        private Result<TResult> NotificationOrThrowException<TResult>(Exception ex, Produto produto)
+        {
+
+            if (ex.GetBaseException().Message.Contains($"UK_{nameof(Produto)}"))
+                return new Result<TResult>(new Notification(nameof(Produto), "Produto já cadastrado"));
+            if (ex.GetBaseException().Message.Contains($"FK_{nameof(Produto)}_{nameof(Categoria)}_{nameof(Categoria)}{nameof(Categoria.Id)}"))
+                return new Result<TResult>(new Notification(nameof(Produto), $"Categoria informada (ID: {produto.Categoria?.Id}) não encontrada"));
+            throw ex;
+        }
+
         public IResult<int> Add(Produto produto)
         {
             produto.Validate();
@@ -27,9 +37,7 @@ namespace ControleVenda.Domain.Services
             }
             catch (Exception ex)
             {
-                if (ex.GetBaseException().Message.Contains($"UK_{nameof(Produto)}"))
-                    return new Result<int>(new Notification(nameof(Produto), "Produto já cadastrado"));
-                throw;
+                return NotificationOrThrowException<int>(ex, produto);
             }
         }
 
@@ -45,8 +53,12 @@ namespace ControleVenda.Domain.Services
         {
             produto.Validate();
 
+
             if (produto.Id <= 0)
                 produto.AddNotification(nameof(produto.Id), "Id informado é invalido");
+            
+            if (!produto.IsValid)
+                return new Result<bool>(produto.Notifications);
 
             try
             {
@@ -56,9 +68,17 @@ namespace ControleVenda.Domain.Services
             }
             catch (Exception ex)
             {
-                if (ex.GetBaseException().Message.Contains($"UK_{nameof(Produto)}"))
-                    return new Result<bool>(new Notification(nameof(Produto), "Produto já cadastrado"));
-                throw;
+                return NotificationOrThrowException<bool>(ex, produto);
+
+                // ---------------------------------------------------------------------------------------------------------------------------------------------
+                // Deixei aqui porque o TMCR pediu desesperadamente
+                // ---------------------------------------------------------------------------------------------------------------------------------------------
+                //if (ex.GetBaseException().Message.Contains($"UK_{nameof(Produto)}"))
+                //    return new Result<bool>(new Notification(nameof(Produto), "Produto já cadastrado"));
+                //if (ex.GetBaseException().Message.Contains($"FK_{nameof(Produto)}_{nameof(Categoria)}_{nameof(Categoria)}{nameof(Categoria.Id)}"))
+                //    return new Result<bool>(new Notification(nameof(Produto), $"Categoria informada (ID: {produto.Categoria?.Id}) não encontrada"));
+                //throw;
+                // ---------------------------------------------------------------------------------------------------------------------------------------------
             }
 
         }

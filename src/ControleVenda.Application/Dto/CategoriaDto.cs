@@ -2,9 +2,7 @@
 {
     public class CategoriaDto
     {
-        public CategoriaDto()
-        {
-        }
+        public CategoriaDto() { }
 
         public CategoriaDto(int id)
         {

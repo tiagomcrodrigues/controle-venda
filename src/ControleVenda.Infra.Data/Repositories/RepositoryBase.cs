@@ -17,6 +17,12 @@ namespace ControleVenda.Infra.Data.Repositories
 
         protected abstract TTable Map(TEntity entidade, TTable tabela);
 
+        protected virtual TTable? Find(int id)
+            => _dbSet.Find(id);
+
+        protected virtual IQueryable<TTable> GetRows()
+            => _dbSet;
+
         public RepositoryBase(DbVenda dbVenda)
         {
             _dbVenda = dbVenda;
@@ -25,8 +31,6 @@ namespace ControleVenda.Infra.Data.Repositories
 
         public virtual int Add(TEntity entidade)
         {
-
-            
             TTable tabela = Map(entidade);
             _dbSet.Add(tabela);
             _dbVenda.SaveChanges();
@@ -35,7 +39,7 @@ namespace ControleVenda.Infra.Data.Repositories
 
         public virtual void Delete(int id)
         {
-            TTable? tabela = _dbSet.Find(id);
+            TTable? tabela = Find(id);
             if (tabela != null)
             {
                 _dbSet.Remove(tabela);
@@ -44,14 +48,14 @@ namespace ControleVenda.Infra.Data.Repositories
         }
 
         public virtual IEnumerable<TEntity> GetAll()
-            => _dbSet
+            => GetRows()
             .ToList()
             .Select(c => Map(c));
 
 
         public virtual TEntity? GetById(int id)
         {
-            TTable? tabela = _dbSet.Find(id);
+            TTable? tabela = Find(id);
             if (tabela == null)
                 return null;
             return Map(tabela);
@@ -59,7 +63,7 @@ namespace ControleVenda.Infra.Data.Repositories
 
         public virtual void Update(TEntity entidade)
         {
-            TTable? tabela = _dbSet.Find(entidade.Id);
+            TTable? tabela = Find(entidade.Id);
             if (tabela != null)
             {
                 Map(entidade, tabela);

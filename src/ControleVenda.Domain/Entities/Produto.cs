@@ -35,7 +35,7 @@ namespace ControleVenda.Domain.Entities
                 AddNotification(nameof(ValorUnitario), "o valor unitario é obrigatorio");
 
             if (Quantidade <= 0 )
-                AddNotification(nameof(Quantidade), "A quntidade é obrigatorio");
+                AddNotification(nameof(Quantidade), "A quantidade é obrigatorio");
         }
 
 

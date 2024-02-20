@@ -12,7 +12,7 @@ namespace ControleVenda.Infra.Data.Extensions
                 Id = entidade.Id,
                 Nome = entidade.Nome,
                 ValorUnitario = entidade.ValorUnitario,
-                Quntidade = entidade.Quantidade,
+                Quantidade = entidade.Quantidade,
                 CategoriaId = entidade.Categoria.Id
             };
         }
@@ -22,7 +22,7 @@ namespace ControleVenda.Infra.Data.Extensions
             {
                 Nome = tabela.Nome,
                 ValorUnitario = tabela.ValorUnitario,
-                Quantidade = tabela.Quntidade,
+                Quantidade = tabela.Quantidade,
                 Categoria = tabela.Categoria.Map()
             };
 
@@ -31,7 +31,7 @@ namespace ControleVenda.Infra.Data.Extensions
         {
             tabela.Nome = entidade.Nome;
             tabela.ValorUnitario = entidade.ValorUnitario;
-            tabela.Quntidade = entidade.Quantidade;
+            tabela.Quantidade = entidade.Quantidade;
             tabela.CategoriaId = entidade.Categoria.Id;
             return tabela;
         }

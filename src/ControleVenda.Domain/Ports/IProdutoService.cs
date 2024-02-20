@@ -3,7 +3,7 @@ using ControleVenda.Domain.Entities;
 
 namespace ControleVenda.Domain.Ports
 {
-    internal interface IProdutoService
+    public interface IProdutoService
     {
         IResult<int> Add(Produto produto);
         void Delete(int id);

@@ -60,10 +60,10 @@ namespace ControleVenda.Infra.Data.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("Nome");
 
-                    b.Property<int>("Quntidade")
+                    b.Property<int>("Quantidade")
                         .IsUnicode(false)
                         .HasColumnType("int")
-                        .HasColumnName("Quntidade");
+                        .HasColumnName("Quantidade");
 
                     b.Property<decimal>("ValorUnitario")
                         .HasColumnType("decimal(16,2)")

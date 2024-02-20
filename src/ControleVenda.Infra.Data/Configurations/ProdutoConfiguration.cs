@@ -41,8 +41,8 @@ namespace ControleVenda.Infra.Data.Configurations
                 .HasColumnType("decimal(16,2)")
                 .IsRequired();
 
-            b.Property(nameof(Produto.Quntidade))
-                .HasColumnName(nameof(Produto.Quntidade))
+            b.Property(nameof(Produto.Quantidade))
+                .HasColumnName(nameof(Produto.Quantidade))
                 .IsUnicode(false)
                 .IsRequired();
 

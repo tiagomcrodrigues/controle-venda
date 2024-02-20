@@ -25,5 +25,15 @@ namespace ControleVenda.Infra.Data.Repositories
         protected override Tables.Produto Map(Produto entidade, Tables.Produto tabela)
             => tabela.Map(entidade);
 
+        protected override Tables.Produto? Find(int id)
+            => _dbVenda.Produtos
+                .Where(x => x.Id == id)
+                .Include(c => c.Categoria)
+                .FirstOrDefault();
+
+        protected override IQueryable<Tables.Produto> GetRows()
+            => _dbVenda.Produtos
+                .Include(c => c.Categoria);
+
     }
 }

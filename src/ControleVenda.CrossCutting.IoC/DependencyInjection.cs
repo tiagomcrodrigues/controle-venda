@@ -1,18 +1,13 @@
 ﻿using ControleVenda.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using ControleVenda.Domain.Ports;
 using ControleVenda.Infra.Data.Repositories;
 using ControleVenda.Domain.Services;
 using ControleVenda.Application.Ports.Categorias;
 using ControleVenda.Application.UseCases.Categorias;
-using Castle.Core.Configuration;
+using ControleVenda.Application.UseCases.Produtos;
+using ControleVenda.Application.Ports.Produtos;
 
 namespace ControleVenda.CrossCutting.IoC
 {
@@ -33,9 +28,11 @@ namespace ControleVenda.CrossCutting.IoC
 
             // Repositórios
             service.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            service.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             // Serviços de Domínio
             service.AddScoped<ICategoriaService, CategoriaService>();
+            service.AddScoped<IProdutoService, ProdutoService>();
 
             // Casos de Uso
             service.AddScoped<ICategoriaAddUseCase, CategoriaAddUseCase>();
@@ -43,6 +40,12 @@ namespace ControleVenda.CrossCutting.IoC
             service.AddScoped<ICategoriaGetAllUseCase, CategoriaGetAllUseCase>();
             service.AddScoped<ICategoriaUpdateUseCase, CategoriaUpdateUseCase>();
             service.AddScoped<ICategoriaDeleteUseCase, CategoriaDeleteUseCase>();
+
+            service.AddScoped<IProdutoAddUseCase, ProdutoAddUseCase>();
+            service.AddScoped<IProdutoGetByIdUseCase, ProdutoGetByIdUseCase>();
+            service.AddScoped<IProdutoGetAllUseCase, ProdutoGetAllUseCase>();
+            service.AddScoped<IProdutoUpdateUseCase, ProdutoUpdateUseCase>();
+            service.AddScoped<IProdutoDeleteUseCase, ProdutoDeleteUseCase>();
 
             return service;
 

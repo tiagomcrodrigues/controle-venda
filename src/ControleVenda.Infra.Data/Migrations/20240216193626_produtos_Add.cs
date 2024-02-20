@@ -18,7 +18,7 @@ namespace ControleVenda.Infra.Data.Migrations
                     Nome = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ValorUnitario = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
-                    Quntidade = table.Column<int>(type: "int", unicode: false, nullable: false),
+                    Quantidade = table.Column<int>(type: "int", unicode: false, nullable: false),
                     CategoriaId = table.Column<int>(type: "int", unicode: false, nullable: false)
                 },
                 constraints: table =>

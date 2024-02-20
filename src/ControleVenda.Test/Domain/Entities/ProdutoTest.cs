@@ -1,6 +1,5 @@
 ﻿using AutoFixture;
-using dm=ControleVenda.Domain.Entities;
-using ControleVenda.Infra.Data.Tables;
+using dm = ControleVenda.Domain.Entities;
 
 namespace ControleVenda.Test.Domain.Entities
 {
