@@ -14,7 +14,7 @@ namespace ControleVenda.Test.Domain.Entities
         {
             
             Nome = null,
-            TipoDePessoa = null,
+            TipoPessoa = null,
             TipoLogradouro = null,
             Documento = null,
             Logradouro = null,
@@ -32,7 +32,7 @@ namespace ControleVenda.Test.Domain.Entities
         {
 
             Nome = "a",
-            TipoDePessoa = "jj",
+            TipoPessoa = "jj",
             Documento = "3",
             TipoLogradouro = "A",
             Logradouro = "A",

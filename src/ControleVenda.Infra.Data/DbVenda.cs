@@ -18,9 +18,16 @@ namespace ControleVenda.Infra.Data
         {
             modelBuilder.ApplyConfiguration(new CategoriaConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
         }
 
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
+        public virtual DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Pedido> Pedidos { get; set; }
+        public virtual DbSet<PedidoItem> PedidosItens { get; set; }
+
     }
 }

@@ -1,11 +1,6 @@
 ﻿using ControleVenda.Infra.Data.Tables;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleVenda.Infra.Data.Configurations
 {
@@ -31,11 +26,6 @@ namespace ControleVenda.Infra.Data.Configurations
                 .IsUnicode(false)
                 .IsRequired();
 
-            b.HasOne(o => o.Categoria)
-                .WithMany(d => d.Produtos)
-                .HasForeignKey(fk => fk.CategoriaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             b.Property(b => b.ValorUnitario)
                 .HasColumnName(nameof(Produto.ValorUnitario))
                 .HasColumnType("decimal(16,2)")
@@ -50,6 +40,12 @@ namespace ControleVenda.Infra.Data.Configurations
                 .HasDatabaseName($"UK_{nameof(Produto)}" +
                 $"_{nameof(Produto.Nome)}")
                 .IsUnique();
+
+            b.HasOne(o => o.Categoria)
+               .WithMany(d => d.Produtos)
+               .HasForeignKey(fk => fk.CategoriaId)
+               .OnDelete(DeleteBehavior.Restrict);
+
 
         }
     }

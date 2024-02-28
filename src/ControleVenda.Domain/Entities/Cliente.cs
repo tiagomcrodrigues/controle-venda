@@ -1,4 +1,5 @@
 ﻿using Flunt.Notifications;
+using System.ComponentModel.Design;
 
 namespace ControleVenda.Domain.Entities
 {
@@ -16,7 +17,7 @@ namespace ControleVenda.Domain.Entities
 
         public int Id { get; private set; }
         public string? Nome { get; set; }
-        public string? TipoDePessoa { get; set; }
+        public string? TipoPessoa { get; set; }
         public string? Documento { get; set; }
         public string? TipoLogradouro { get; set; }
         public string? Logradouro { get; set; }
@@ -36,11 +37,14 @@ namespace ControleVenda.Domain.Entities
             if (Nome?.Length > 100 || Nome?.Length < 2)
                 AddNotification(nameof(Nome), "O nome deve conter entre 2 e 50 caracteres");
 
-            if (string.IsNullOrWhiteSpace(TipoDePessoa))
-                AddNotification(nameof(TipoDePessoa), "O Tipo De Pessoa é obrigatório");
+            if (string.IsNullOrWhiteSpace(TipoPessoa))
+                AddNotification(nameof(TipoPessoa), "O Tipo De Pessoa é obrigatório");
 
-            if (TipoDePessoa?.Length > 1)
-                AddNotification(nameof(TipoDePessoa), "O Tipo De Pessoa deve conter a letra  ( J ) para Juridica ou ( F ) fisica ");
+            if (TipoPessoa?.Length > 1)
+                AddNotification(nameof(TipoPessoa), "O Tipo De Pessoa deve conter a letra  ( J ) para Juridica ou ( F ) fisica ");
+            else
+                if (!("FJ".Contains(TipoPessoa ?? string.Empty)))
+                AddNotification(nameof(TipoPessoa), "Tipo De Pessoa inválido");
 
             if (string.IsNullOrWhiteSpace(TipoLogradouro))
                 AddNotification(nameof(TipoLogradouro), $"O {nameof(TipoLogradouro)} é obrigatório");
@@ -51,8 +55,21 @@ namespace ControleVenda.Domain.Entities
             if (string.IsNullOrWhiteSpace(Documento))
                 AddNotification(nameof(Documento), $"O {nameof(Documento)} é obrigatório");
 
-            if (Documento?.Length < 2 || Documento?.Length > 14)
+            if (Documento?.Length != 11 && Documento?.Length != 14)
+            {
                 AddNotification(nameof(Documento), $"O {nameof(Documento)} esta invalido");
+            }
+            else
+            {
+                if ((TipoPessoa ?? string.Empty) == "F")
+                {
+                    // Verifica tamanho CPF
+                }
+                else if ((TipoPessoa ?? string.Empty) == "J")
+                {
+                    // Verifica tamanho CNPJ
+                }
+            }
 
             if (string.IsNullOrWhiteSpace(Logradouro))
                 AddNotification(nameof(Logradouro), $"O {nameof(Logradouro)} é obrigatório");
@@ -60,7 +77,7 @@ namespace ControleVenda.Domain.Entities
             if (Logradouro?.Length < 2 || Logradouro?.Length > 30)
                 AddNotification(nameof(Logradouro), $"O {nameof(Logradouro)} deve conter entre 2 e 30 Caracteres ");
 
-            if (string.IsNullOrWhiteSpace(Numero ))
+            if (string.IsNullOrWhiteSpace(Numero))
                 AddNotification(nameof(Numero), $"O {nameof(Numero)} é obrigatório");
 
             if (Numero?.Length <= 1 || Numero?.Length > 20)

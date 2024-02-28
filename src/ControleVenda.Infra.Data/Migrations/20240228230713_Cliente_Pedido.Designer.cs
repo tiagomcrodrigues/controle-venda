@@ -3,6 +3,7 @@ using System;
 using ControleVenda.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleVenda.Infra.Data.Migrations
 {
     [DbContext(typeof(DbVenda))]
-    partial class DbVendaModelSnapshot : ModelSnapshot
+    [Migration("20240228230713_Cliente_Pedido")]
+    partial class Cliente_Pedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -37,7 +37,7 @@ namespace ControleVenda.Test.Domain.Services
         {
 
             Nome = "dasd",
-            TipoDePessoa = "j",
+            TipoPessoa = "j",
             Documento = "51166945865",
             TipoLogradouro = "bvsdy",
             Logradouro = "Akjv",

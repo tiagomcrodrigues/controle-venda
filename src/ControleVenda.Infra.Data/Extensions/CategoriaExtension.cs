@@ -3,7 +3,7 @@ using dm = ControleVenda.Domain.Entities;
 
 namespace ControleVenda.Infra.Data.Extensions
 {
-    internal static class CategoriaExtension
+    public static class CategoriaExtension
     {
         public static tb.Categoria Map(this dm.Categoria entidade)
         {

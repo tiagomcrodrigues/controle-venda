@@ -8,6 +8,8 @@ using ControleVenda.Application.Ports.Categorias;
 using ControleVenda.Application.UseCases.Categorias;
 using ControleVenda.Application.UseCases.Produtos;
 using ControleVenda.Application.Ports.Produtos;
+using ControleVenda.Application.Ports.Clientes;
+using ControleVenda.Application.UseCases.Clientes;
 
 namespace ControleVenda.CrossCutting.IoC
 {
@@ -29,10 +31,12 @@ namespace ControleVenda.CrossCutting.IoC
             // Repositórios
             service.AddScoped<ICategoriaRepository, CategoriaRepository>();
             service.AddScoped<IProdutoRepository, ProdutoRepository>();
+            service.AddScoped<IClienteRepository, ClienteRepository>();
 
             // Serviços de Domínio
             service.AddScoped<ICategoriaService, CategoriaService>();
             service.AddScoped<IProdutoService, ProdutoService>();
+            service.AddScoped<IClienteService, ClienteService>();
 
             // Casos de Uso
             service.AddScoped<ICategoriaAddUseCase, CategoriaAddUseCase>();
@@ -46,6 +50,13 @@ namespace ControleVenda.CrossCutting.IoC
             service.AddScoped<IProdutoGetAllUseCase, ProdutoGetAllUseCase>();
             service.AddScoped<IProdutoUpdateUseCase, ProdutoUpdateUseCase>();
             service.AddScoped<IProdutoDeleteUseCase, ProdutoDeleteUseCase>();
+
+            service.AddScoped<IClienteAddUseCase, ClienteAddUseCase>();
+            service.AddScoped<IClienteGetByIdUseCase, ClienteGetByIdUseCase>();
+            service.AddScoped<IClienteGetAllUseCase, ClienteGetAllUseCase>();
+            service.AddScoped<IClienteUpdateUseCase, ClienteUpdateUseCase>();
+            service.AddScoped<IClienteDeleteUseCase, ClienteDeleteUseCase>();
+
 
             return service;
 
