@@ -6,7 +6,7 @@ namespace ControleVenda.Domain.Ports
     public interface IPedidoService
     {
         IResult<int> Add(Pedido pedido);
-        void Cancel(int id);
+        void Cancel(Pedido pedido);
         IEnumerable<Pedido> GetAll();
         Pedido? GetById(int id);
     }

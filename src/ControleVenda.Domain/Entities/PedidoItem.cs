@@ -1,4 +1,5 @@
-﻿using Flunt.Notifications;
+﻿using ControleVenda.CrossCutting.Common.Models;
+using Flunt.Notifications;
 
 namespace ControleVenda.Domain.Entities
 {
@@ -15,21 +16,19 @@ namespace ControleVenda.Domain.Entities
 
         public int Id { get; private set; }
         public int PedidoId { get; set; }
-        public int ProdutoId { get; set; }
-        public int ValorUnitario { get; set; }
+        public SimpleIdNameModel Produto { get; set; }
+        public double ValorUnitario { get; set; }
         public int Quantidade { get; set; }
 
         public void Validate()
         {
-            //TODO: NotImplementedException
-            if (ProdutoId == null || ProdutoId <= 0)
-                AddNotification(nameof(ProdutoId), "O Produto Id é obrigatório");
+            if (Produto == null || Produto.Id <= 0)
+                AddNotification(nameof(Produto), "O Produto Id é obrigatório");
 
+            if (ValorUnitario <= 0)
+                AddNotification(nameof(PedidoId), "O valor unitário não pode ser zero ou negativo");
 
-            if (PedidoId == null || PedidoId<= 0)
-                AddNotification(nameof(PedidoId), "O Pedido Id é obrigatório");
-
-            if (Quantidade == null || Quantidade <= 0)
+            if (Quantidade <= 0)
                 AddNotification(nameof(Quantidade), "A quntidade deve ser informada");
         }
 

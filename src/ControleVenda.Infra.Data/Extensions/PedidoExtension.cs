@@ -11,7 +11,7 @@ namespace ControleVenda.Infra.Data.Extensions
             return new tb.Pedido()
             {
                 Data = entidade.Data,
-                ClienteId = entidade.ClienteId,
+                ClienteId = entidade.Cliente.Id,
                 ValorTotal = entidade.ValorTotal,
                 Cancelado = entidade.Cancelado,
                 Itens = entidade.Itens.Select(e => e.Map()).ToList()
@@ -24,11 +24,24 @@ namespace ControleVenda.Infra.Data.Extensions
         {
             return new tb.PedidoItem()
             {
-                ProdutoId = entidade.ProdutoId,
+                ProdutoId = entidade.Produto.Id,
                 ValorUnitario = entidade.ValorUnitario,
                 Quantidade = entidade.Quantidade
             };
         }
+
+
+
+        public static dm.Pedido Map(this tb.Pedido tabela)
+        {
+            return new dm.Pedido() { };
+        }
+
+        public static tb.Pedido Map(this tb.Pedido tabela, dm.Pedido entidade)
+        {
+            return new tb.Pedido();
+        }
+        
 
 
     }

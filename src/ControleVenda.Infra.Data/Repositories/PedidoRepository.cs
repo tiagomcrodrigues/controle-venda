@@ -1,27 +1,32 @@
-﻿//using ControleVenda.Domain.Entities;
-//using ControleVenda.Domain.Ports;
-//using ControleVenda.Infra.Data.Extensions;
+﻿using ControleVenda.Domain.Entities;
+using ControleVenda.Domain.Ports;
+using ControleVenda.Infra.Data.Extensions;
 
-//namespace ControleVenda.Infra.Data.Repositories
-//{
-//    public class PedidoRepository : RepositoryBase<pedido, Tables.Cliente>, IClienteRepository
-//    {
+namespace ControleVenda.Infra.Data.Repositories
+{
+    public class PedidoRepository : RepositoryBase<Pedido, Tables.Pedido>, IPedidoRepository
+    {
 
-//        private readonly DbVenda _dbVenda;
+        private readonly DbVenda _dbVenda;
 
-//        public PedidoRepository(DbVenda dbVenda) : base(dbVenda)
-//        {
-//            _dbVenda = dbVenda;
-//        }
+        public PedidoRepository(DbVenda dbVenda) : base(dbVenda)
+        {
+            _dbVenda = dbVenda;
+        }
 
+        public void Cancel(Pedido pedido)
+        {
+            pedido.Cancelado = true;
+            Update(pedido);
+        }
 
-//        protected override Cliente Map(Tables.Cliente tabela)
-//            => tabela.Map();
+        protected override Pedido Map(Tables.Pedido tabela)
+            => tabela.Map();
 
-//        protected override Tables.Cliente Map(Cliente entidade)
-//            => entidade.Map();
+        protected override Tables.Pedido Map(Pedido entidade)
+            => entidade.Map();
 
-//        protected override Tables.Cliente Map(Cliente entidade, Tables.Cliente tabela)
-//            => tabela.Map(entidade);
-//    }
-//}
+        protected override Tables.Pedido Map(Pedido entidade, Tables.Pedido tabela)
+            => tabela.Map(entidade);
+    }
+}

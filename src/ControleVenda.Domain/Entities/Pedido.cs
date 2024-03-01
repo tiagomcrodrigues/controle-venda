@@ -1,4 +1,5 @@
-﻿using Flunt.Notifications;
+﻿using ControleVenda.CrossCutting.Common.Models;
+using Flunt.Notifications;
 
 namespace ControleVenda.Domain.Entities
 {
@@ -16,7 +17,7 @@ namespace ControleVenda.Domain.Entities
         public int Id { get; private set; }
 
         public DateTime Data { get; set; }= DateTime.Now;
-        public int ClienteId { get; set; }
+        public SimpleIdNameModel Cliente { get; set; }
         public double ValorTotal => Itens.Sum(i => i.Quantidade * i.ValorUnitario);
         public bool Cancelado { get; set; } = false;
         public List<PedidoItem> Itens { get; set; }= new List<PedidoItem>();
@@ -24,18 +25,22 @@ namespace ControleVenda.Domain.Entities
         public void Validate()
         {
             // Validar campos da entidade de pedido
-            if (ClienteId == null || ClienteId <= 0)
-                AddNotification(nameof(ClienteId), "O Cliente Id é obrigatório");
+            if (Cliente.Id <= 0)
+                AddNotification(nameof(Cliente), "O Cliente Id é obrigatório");
 
 
-            if (Itens == null || Itens.Count <= 0)
-                AddNotification(nameof(Itens), "O Item é obrigatório");
-
-            // Validar os campos das entidades e pedidoitem
-            foreach (var item in Itens)
+            if (!Itens?.Any() ?? false)
             {
-                item.Validate();
-                AddNotifications(item);
+                AddNotification(nameof(Itens), "O Item é obrigatório");
+            }
+            else
+            {
+                // Validar os campos das entidades e pedidoitem
+                foreach (var item in Itens)
+                {
+                    item.Validate();
+                    AddNotifications(item);
+                }
             }
 
         }

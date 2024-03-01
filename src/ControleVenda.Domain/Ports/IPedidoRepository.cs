@@ -9,9 +9,9 @@ namespace ControleVenda.Domain.Ports
 {
     public interface IPedidoRepository
     {
-        int Add(Pedido cliente);
+        int Add(Pedido pedido);
         IEnumerable<Pedido> GetAll();
         Pedido? GetById(int id);
-        void Cancel(int id);
+        void Cancel(Pedido pedido);
     }
 }

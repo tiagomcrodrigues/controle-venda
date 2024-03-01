@@ -12,7 +12,7 @@ namespace ControleVenda.Infra.Data.Tables
         public int Id { get; private set; }
         public int PedidoId { get; set; }
         public int ProdutoId { get; set; }
-        public int ValorUnitario { get; set; }
+        public double ValorUnitario { get; set; }
         public int Quantidade { get; set; }
 
         public Pedido Pedido { get; set; }

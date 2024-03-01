@@ -10,6 +10,8 @@ using ControleVenda.Application.UseCases.Produtos;
 using ControleVenda.Application.Ports.Produtos;
 using ControleVenda.Application.Ports.Clientes;
 using ControleVenda.Application.UseCases.Clientes;
+using ControleVenda.Application.Ports.Pedidos;
+using ControleVenda.Application.UseCases.Pedidos;
 
 namespace ControleVenda.CrossCutting.IoC
 {
@@ -32,11 +34,13 @@ namespace ControleVenda.CrossCutting.IoC
             service.AddScoped<ICategoriaRepository, CategoriaRepository>();
             service.AddScoped<IProdutoRepository, ProdutoRepository>();
             service.AddScoped<IClienteRepository, ClienteRepository>();
+            service.AddScoped<IPedidoRepository, PedidoRepository>();
 
             // Serviços de Domínio
             service.AddScoped<ICategoriaService, CategoriaService>();
             service.AddScoped<IProdutoService, ProdutoService>();
             service.AddScoped<IClienteService, ClienteService>();
+            service.AddScoped<IPedidoService, PedidoService>();
 
             // Casos de Uso
             service.AddScoped<ICategoriaAddUseCase, CategoriaAddUseCase>();
@@ -56,6 +60,8 @@ namespace ControleVenda.CrossCutting.IoC
             service.AddScoped<IClienteGetAllUseCase, ClienteGetAllUseCase>();
             service.AddScoped<IClienteUpdateUseCase, ClienteUpdateUseCase>();
             service.AddScoped<IClienteDeleteUseCase, ClienteDeleteUseCase>();
+
+            service.AddScoped<IPedidoAddUseCase, PedidoAddUseCase>();
 
 
             return service;
