@@ -1,6 +1,11 @@
 using ControleVenda.Api.Filters;
 using Microsoft.AspNetCore.Mvc;
 using ControleVenda.CrossCutting.IoC;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using ControleVenda.Api.Validators;
+using System.Reflection;
+using ControleVenda.Api.Extensions;
 
 namespace ControleVenda.Api
 {
@@ -14,6 +19,9 @@ namespace ControleVenda.Api
 
             builder.Services.AddControllers(opt => GlobalFilters.Configure(opt));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            builder.Services.AddFluentValidation();
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

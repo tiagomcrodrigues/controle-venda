@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ControleVenda.Domain.Services
 {
+
     public class ClienteService : IClienteService
     {
 
