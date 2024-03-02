@@ -4,6 +4,8 @@ namespace ControleVenda.CrossCutting.Common.Models
 {
     public class Result<T> : IResult<T>
     {
+        private object v;
+
         public Result(T data)
         {
             Data = data;
@@ -22,6 +24,11 @@ namespace ControleVenda.CrossCutting.Common.Models
         public Result(Exception exception)
         {
             Exception = exception;
+        }
+
+        public Result(object v)
+        {
+            this.v = v;
         }
 
         public bool Success => !Errors.Any() && Exception == null;

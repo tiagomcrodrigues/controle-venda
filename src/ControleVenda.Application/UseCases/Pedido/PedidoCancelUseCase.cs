@@ -10,15 +10,16 @@ using System.Threading.Tasks;
 
 namespace ControleVenda.Application.UseCases.Pedido
 {
-    public class PedidoCancelUseCase : UseCaseBase<IPedidoService>, IPedidoAddUseCase
+    public class PedidoCancelUseCase : UseCaseBase<IPedidoService>, IPedidoCancelUseCase
     {
         public PedidoCancelUseCase(IPedidoService service) : base(service)
         {
         }
 
-        public IResult<int> Execute(PedidoDto dto)
+        public IResult<int> Execute(int id)
         {
-            throw new NotImplementedException();
+            var pedido = _service.GetById(id);
+           = _service.Cancel(pedido);
         }
     }
 }
