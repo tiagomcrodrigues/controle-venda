@@ -26,7 +26,7 @@ namespace ControleVenda.CrossCutting.Common.Models
             Exception = exception;
         }
 
-        public Result(object v)
+        public Result(object v, string v1)
         {
             this.v = v;
         }

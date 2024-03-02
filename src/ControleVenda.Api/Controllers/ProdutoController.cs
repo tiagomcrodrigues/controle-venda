@@ -59,7 +59,7 @@ namespace ControleVenda.Api.Controlers
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult Editar([FromRoute] int id, ProdutoRequest request)
+        public IActionResult Editar([FromRoute] int id, [FromBody] ProdutoRequest request)
         {
             if (_ProdutoGetByIdUseCase.Execute(id) == null)
                 return NotFound(new NotificacaoModel(nameof(Produto), "Registro não encontrado"));

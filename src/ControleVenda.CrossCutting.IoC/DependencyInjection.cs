@@ -12,6 +12,7 @@ using ControleVenda.Application.Ports.Clientes;
 using ControleVenda.Application.UseCases.Clientes;
 using ControleVenda.Application.Ports.Pedidos;
 using ControleVenda.Application.UseCases.Pedidos;
+using ControleVenda.Application.UseCases.Pedido;
 
 namespace ControleVenda.CrossCutting.IoC
 {
@@ -62,6 +63,7 @@ namespace ControleVenda.CrossCutting.IoC
             service.AddScoped<IClienteDeleteUseCase, ClienteDeleteUseCase>();
 
             service.AddScoped<IPedidoAddUseCase, PedidoAddUseCase>();
+            service.AddScoped <IPedidoCancelUseCase, PedidoCancelUseCase>();
 
 
             return service;

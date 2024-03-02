@@ -1,9 +1,8 @@
 ﻿using ControleVenda.Api.Extensions;
 using ControleVenda.Api.Models.Requests;
 using ControleVenda.Api.Models.Responses;
-using ControleVenda.Application.Ports.Clientes;
 using ControleVenda.Application.Ports.Pedidos;
-using ControleVenda.Application.UseCases.Pedidos;
+using ControleVenda.Application.UseCases.Pedido;
 using ControleVenda.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,13 +13,17 @@ namespace ControleVenda.Api.Controllers
     public class PedidoController : ControllerBase
     {
         private readonly IPedidoAddUseCase _pedidoAddUseCase;
+        private readonly IPedidoCancelUseCase _pedidoCancelUseCase;
 
-        public PedidoController
+       public PedidoController
         (
-            IPedidoAddUseCase pedidoAddUseCase
+            IPedidoAddUseCase pedidoAddUseCase,
+           IPedidoCancelUseCase pedidoCancelUseCase
+
         )
         {
             _pedidoAddUseCase = pedidoAddUseCase;
+            _pedidoCancelUseCase = pedidoCancelUseCase;
         }
 
         [HttpPost]
@@ -33,40 +36,15 @@ namespace ControleVenda.Api.Controllers
             return UnprocessableEntity(result.Errors.CapturaCriticas());
         }
 
-        //[HttpGet]
-        //public IActionResult Get()
-        //    => Ok(_clienteGetAllUseCase.Execute().Select(s => s.Map()));
+        [HttpDelete("{id:int}")]
+        public IActionResult CancelarPedido([FromRoute] int id)
+        {
+            var result = _pedidoCancelUseCase.Execute(id);
+            if (result.Success)
+                return NoContent();
 
-
-        //[HttpGet("{id:int}")]
-        //public IActionResult GetById([FromRoute] int id)
-        //{
-        //    var result = _clienteGetByIdUseCase.Execute(id);
-        //    if (result == null)
-        //        return NotFound(new NotificacaoModel(nameof(Cliente), "Registro não encontrado"));
-        //    return Ok(result.Map());
-        //}
-
-        //[HttpPut("{id:int}")]
-        //public IActionResult Editar([FromRoute] int id, ClienteRequest request)
-        //{
-        //    if (_clienteGetByIdUseCase.Execute(id) == null)
-        //        return NotFound(new NotificacaoModel(nameof(Cliente), "Registro não encontrado"));
-
-        //    var result = _clienteUpdateUseCase.Execute(request.Map(id));
-        //    if (result.Success)
-        //        return NoContent();
-
-        //    return UnprocessableEntity(result.Errors.CapturaCriticas());
-
-        //}
-
-        //[HttpDelete("{id:int}")]
-        //public IActionResult Excluir([FromRoute] int id)
-        //{
-        //    _clienteDeleteUseCase.Execute(id);
-        //    return NoContent();
-        //}
+            return UnprocessableEntity(result.Errors.CapturaCriticas());
+        }
 
 
     }

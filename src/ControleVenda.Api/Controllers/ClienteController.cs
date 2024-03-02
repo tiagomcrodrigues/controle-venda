@@ -58,7 +58,7 @@ namespace ControleVenda.Api.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult Editar([FromRoute] int id, ClienteRequest request)
+        public IActionResult Editar([FromRoute] int id, [FromBody] ClienteRequest request)
         {
             if (_clienteGetByIdUseCase.Execute(id) == null)
                 return NotFound(new NotificacaoModel(nameof(Cliente), "Registro não encontrado"));

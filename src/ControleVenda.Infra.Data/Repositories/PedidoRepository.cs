@@ -1,6 +1,7 @@
 ﻿using ControleVenda.Domain.Entities;
 using ControleVenda.Domain.Ports;
 using ControleVenda.Infra.Data.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControleVenda.Infra.Data.Repositories
 {
@@ -16,8 +17,25 @@ namespace ControleVenda.Infra.Data.Repositories
 
         public void Cancel(Pedido pedido)
         {
-            pedido.Cancelado = true;
-            Update(pedido);
+            // pedido.Cancelado = true;
+            // Update(pedido);
+            _dbVenda.Database.ExecuteSqlRaw(
+                $"UPDATE {nameof(Pedido)} " +
+                $"SET {nameof(Pedido.Cancelado)}=b'1' " +
+                $"WHERE  {nameof(Pedido.Id)}={pedido.Id};");
+        }
+
+        public override Pedido? GetById(int id)
+        {
+            Tables.Pedido? tabela = _dbVenda.Pedidos
+                .Include(i => i.Cliente)
+                .Include(i => i.Itens)
+                .ThenInclude(i => i.Produto)
+                .Where(p => p.Id == id)
+                .FirstOrDefault();
+            if (tabela == null)
+                return null;
+            return Map(tabela);
         }
 
         protected override Pedido Map(Tables.Pedido tabela)
@@ -27,6 +45,6 @@ namespace ControleVenda.Infra.Data.Repositories
             => entidade.Map();
 
         protected override Tables.Pedido Map(Pedido entidade, Tables.Pedido tabela)
-            => tabela.Map(entidade);
+            => throw new InvalidOperationException("Alteração de pedido não é permitida");
     }
 }

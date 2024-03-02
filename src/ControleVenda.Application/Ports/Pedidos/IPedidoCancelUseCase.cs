@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ControleVenda.Application.Ports.Pedidos
 {
-    internal interface IPedidoCancelUseCase
+    public interface IPedidoCancelUseCase
     {
         IResult<bool> Execute(int id);
     }

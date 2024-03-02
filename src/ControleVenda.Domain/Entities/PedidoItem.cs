@@ -15,7 +15,6 @@ namespace ControleVenda.Domain.Entities
         }
 
         public int Id { get; private set; }
-        public int PedidoId { get; set; }
         public SimpleIdNameModel Produto { get; set; }
         public double ValorUnitario { get; set; }
         public int Quantidade { get; set; }
@@ -26,7 +25,7 @@ namespace ControleVenda.Domain.Entities
                 AddNotification(nameof(Produto), "O Produto Id é obrigatório");
 
             if (ValorUnitario <= 0)
-                AddNotification(nameof(PedidoId), "O valor unitário não pode ser zero ou negativo");
+                AddNotification(nameof(ValorUnitario), "O valor unitário não pode ser zero ou negativo");
 
             if (Quantidade <= 0)
                 AddNotification(nameof(Quantidade), "A quntidade deve ser informada");
