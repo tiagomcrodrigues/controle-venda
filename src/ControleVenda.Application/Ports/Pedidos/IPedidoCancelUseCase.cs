@@ -10,6 +10,6 @@ namespace ControleVenda.Application.Ports.Pedidos
 {
     internal interface IPedidoCancelUseCase
     {
-        IResult<int> Execute(int id);
+        IResult<bool> Execute(int id);
     }
 }
