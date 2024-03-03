@@ -13,8 +13,15 @@ namespace ControleVenda.Application.UseCases.Pedido
         public IResult<bool> Execute(int id)
         {
             var pedido = _service.GetById(id);
-           _service.Cancel(pedido);
-            return new Result<bool>(true); 
+            if (pedido == null)
+                return new Result<bool>(false);
+            else
+            {
+                _service.Cancel(pedido);
+                return new Result<bool>(true);
+            }
+
+
         }
     }
 }

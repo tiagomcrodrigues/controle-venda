@@ -13,6 +13,7 @@ using ControleVenda.Application.UseCases.Clientes;
 using ControleVenda.Application.Ports.Pedidos;
 using ControleVenda.Application.UseCases.Pedidos;
 using ControleVenda.Application.UseCases.Pedido;
+using ControleVenda.CrossCutting.Common.Abstractions;
 
 namespace ControleVenda.CrossCutting.IoC
 {
@@ -30,6 +31,7 @@ namespace ControleVenda.CrossCutting.IoC
                     ServerVersion.AutoDetect(connectionString)
                 );
             });
+            service.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Repositórios
             service.AddScoped<ICategoriaRepository, CategoriaRepository>();
@@ -64,6 +66,8 @@ namespace ControleVenda.CrossCutting.IoC
 
             service.AddScoped<IPedidoAddUseCase, PedidoAddUseCase>();
             service.AddScoped <IPedidoCancelUseCase, PedidoCancelUseCase>();
+            service.AddScoped<IPedidoGetByIdUseCase, PedidoGetByIdUseCase>();
+            service.AddScoped<IPedidoGetAllUseCase, PedidoGetAllUseCase>();
 
 
             return service;

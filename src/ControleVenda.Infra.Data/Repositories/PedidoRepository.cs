@@ -27,16 +27,19 @@ namespace ControleVenda.Infra.Data.Repositories
 
         public override Pedido? GetById(int id)
         {
-            Tables.Pedido? tabela = _dbVenda.Pedidos
-                .Include(i => i.Cliente)
-                .Include(i => i.Itens)
-                .ThenInclude(i => i.Produto)
+            Tables.Pedido? tabela = GetRows()
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
             if (tabela == null)
                 return null;
             return Map(tabela);
         }
+
+        protected override IQueryable<Tables.Pedido> GetRows()
+            => _dbVenda.Pedidos
+                .Include(i => i.Cliente)
+                .Include(i => i.Itens)
+                .ThenInclude(i => i.Produto);
 
         protected override Pedido Map(Tables.Pedido tabela)
             => tabela.Map();
